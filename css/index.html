@@ -1,57 +1,28 @@
-var emotionsGiphyArry = ["Bored", "Confused", "Inspired", "Lonely", "Scared", "Surprised", "Tired", "Nervous", "Pain", "Reaction", "Hungry", "Sassy", "Drunk", "Shocked", "Frustrated"];
-var currentGiphy;
-var arryOfGif;
-var arryOfPausedGif;
-var newGiphy;
-var giph;
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Giphy</title>
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Chewy|Nothing+You+Could+Do" rel="stylesheet">
+	<link rel="stylesheet" href="..//css/style.css">
+</head>
 
-function displayGiphy(){
+<body>
+<div class="container">
+<!-- diasplay list of button -->
+<div id="giphyList"></div>
+<!-- input button and box -->
+<form id="Giphy">
+	<lable for="giphy-add">Add a Giphy, yo!:</lable>
+	<input type="text" id="giphy-add"><br>
+	<input id="addButton" class="btn btn-primary btn-lg" type="submit" value="booyah">
+</form>
+<!-- displaygif images -->
+<div id="giphyDiv"></div>
 
-	$("#giphyDiv").html('');
-	var giphyChoice = $(this).attr('data-name');
-	var giphyURL = "http://api.giphy.com/v1/gifs/search?q=" +giphyChoice+ "&api_key=dc6zaTOxFJmzC";
-	$.ajax({ url: giphyURL, method: 'GET'})
-	.done(function(giphyData){
-		console.log(giphyURL);
-	currentGiphy = giphyData.data;
-	
-	$.each(currentGiphy, function(index, value){
-	arryOfGif= value.images.original.url;
-	arryOfPausedGif = value.images.original_still.url;
-	newGiphy = $('<img class="img-rounded">');
-	newGiphy.attr('src', arryOfPausedGif);
-	newGiphy.addClass('choice');
-	newGiphy.attr('data-play', arryOfGif);
-	newGiphy.attr('data-paused', arryOfPausedGif);
-	$("#giphyDiv").append(newGiphy);
-	});
-});
-}
-// attribute class.
-$(document).on('mouseover','.choice', function(){
-           $(this).attr('src', $(this).data('play'));                 
-}); 
-$(document).on('mouseleave','.choice', function(){
-           $(this).attr('src', $(this).data('paused'));                   
-});
+<script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="..//css/giphyapi.js"></script>
 
-// show list of the button
-function addNewGiphyButton(){
-	$("#giphyList").html('');
-	for (var i=0; i<emotionsGiphyArry.length; i++){
-		giph = $('<button id="btn" class="btn btn-warning">');
-		giph.addClass("giphyChoice");
-		giph.attr('data-name', emotionsGiphyArry[i]);
-		giph.text(emotionsGiphyArry[i]);
-		$("#giphyList").append(giph);
-	}
-}
-// add new buttons
-$("#addButton").on('click', function(){
-	var giphyChoice = $("#giphy-add").val().trim();
-	emotionsGiphyArry.push(giphyChoice);
-	addNewGiphyButton();
-	return false;
-});
-addNewGiphyButton();
-$(document).on('click', '.giphyChoice', displayGiphy);
+</body>
+</html>
