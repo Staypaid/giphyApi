@@ -14,7 +14,7 @@ function displayGiphy(){
 	$("#giphyDiv").html('');
   var giphyChoice = $(this).attr('data-name');
   //put url plus var plus my api key//
-  var giphyURL = "http://api.giphy.com/v1/gifs/search?q=" +giphyChoice+ "&api_key=euFDbUjVPVGaEwfMF5IvRkOY44l00ykD";
+  var giphyURL = "https://api.giphy.com/v1/gifs/search?q=" +giphyChoice+ "&api_key=euFDbUjVPVGaEwfMF5IvRkOY44l00ykD";
   //call ajax //
 	$.ajax({ url: giphyURL, method: 'GET'})
 	.done(function(giphyData){
