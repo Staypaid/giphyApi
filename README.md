@@ -1,4 +1,5 @@
 https://staypaid.github.io/giphyApi/css/index.html
 
 # giphyApi
-Use giphy api to update parts of the page as needed without refreshing
+Type anything you can think of to see cute and hilarious images from all over the internet.
+Recent searches are saved and new searches are put to the back.
